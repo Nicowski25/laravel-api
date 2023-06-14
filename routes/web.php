@@ -5,7 +5,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,8 +27,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
         'projects' => 'project:slug'
     ]);
     Route::resource('types', TypeController::class)->parameters([
-        'type' => 'type:slug'
-    ])->only(['index']);
+        'types' => 'type:slug'
+    ]);
 
 });
 
