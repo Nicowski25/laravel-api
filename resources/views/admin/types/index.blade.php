@@ -9,13 +9,12 @@
 </div>
 @endif
 
-<div class="table-responsive rounded overflow-hidden mb-3">
+<div class="table-responsive rounded overflow-hidden my-3">
   <table class="table table-primary table-striped align-middle text-center mb-0">
     <thead>
       <tr class="align-middle">
         <th scope="col">ID</th>
         <th scope="col">Name</th>
-        <th scope="col">Slug</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -23,8 +22,7 @@
       @forelse($types as $type)
       <tr>
         <td scope="row">{{ $type->id }}</td>
-        <td scope="row">{{ $type->title }}</td>
-        <td scope="row">{{ $type->slug }}</td>
+        <td scope="row">{{ $type->name }}</td>
         <td scope="row">
 
           <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalId-{{ $type->id }}">
