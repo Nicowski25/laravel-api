@@ -32,12 +32,13 @@
     </div>
 
     <div class="mb-3">
-        <label for="duration" class="form-label">Duration</label>
+        <label for="duration" class="form-label">Expected Weeks Duration</label>
         <input type="text" class="form-control" name="duration" id="duration" value="{{ old('duration', $project->duration) }}" aria-describedby="durationHelper" placeholder="Learn php">
         <small id="durationHelper" class="form-text text-muted">Type the project duration</small>
     </div>
 
-    <div>
+    <div class="mb-3">
+        <label for="duration" class="form-label">Project Status</label>
         <select class="form-select" name="status" value="{{ old('status', $project->status) }}" aria-label="Default select example">
             <option>Open this select menu</option>
             <option value="Done">Done</option>
