@@ -27,12 +27,14 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => ['required', Rule::unique('projects', 'title')->ignore($this->project)],
             'description' => ['nullable'],
+            'image' => [Rule::unique('projects', 'image')],
             'slug' => ['nullable'],
             'duration' => ['nullable'],
             'status' => ['nullable'],
             'start_date' => ['nullable'],
             'end_date' => ['nullable'],
-            'type_id' => ['exists:types,id','nullable'],
+            'repositoryURL' => ['nullable'],
+            'type_id' => ['exists:types,id', 'nullable']
         ];
     }
 }
