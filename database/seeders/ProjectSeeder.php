@@ -17,18 +17,25 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $projects = ['Progetto 1', 'Progetto 3', 'Progetto home', 'Progetto XYZ'];
+        $projects = [
+            'Progetto 1',
+            'Progetto 2',
+            'Progetto 3',
+            'Progetto 4',
+        ];
 
         foreach ($projects as $project) {
-            $project = new Project();
-            $project->title = $faker->word();
-            $project->description = $faker->sentence(10);
-            $project->slug = Str::slug($project->title, '-');
-            $project->duration =  $faker->randomDigit();
-            $project->status = 'inprogress';
-            $project->start_date = $faker->date();
-            $project->end_date = $faker->date();
-            $project->save();
+            $new_project = new Project();
+            $new_project->title = $project;
+            $new_project->description = $faker->sentence(10);
+            $new_project->duration =  $faker->randomDigit();
+            $new_project->image = $faker->word();
+            $new_project->status = 'In progress';
+            $new_project->start_date = $faker->date();
+            $new_project->end_date = $faker->date();
+            $new_project->repositoryUrl = $faker->url();
+            $new_project->slug = Str::slug($new_project->title, '-');
+            $new_project->save();
         }
     }
 }

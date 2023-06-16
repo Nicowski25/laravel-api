@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('title', '50')->unique();
             $table->text('description');
+            $table->string('image')->unique()->nullable();
             $table->integer('duration');
             $table->string('status')->default('inprogress');
             $table->date('start_date');
             $table->date('end_date')->nullable();
+            $table->string('repositoryUrl', 200);
             $table->timestamps();
         });
     }
