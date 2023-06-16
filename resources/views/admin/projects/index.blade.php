@@ -20,7 +20,6 @@
         <th scope="col">Week Duration</th>
         <th scope="col">Status</th>
         <th scope="col">Starting Date</th>
-        <th scope="col">Ending Date</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -34,7 +33,6 @@
         <td scope="row">{{ $project->duration }}</td>
         <td scope="row">{{ $project->status }}</td>
         <td scope="row">{{ $project->start_date }}</td>
-        <td scope="row">{{ $project->end_date }}</td>
         <td scope="row">
           <a class="text-decoration-none btn btn-success text-dark" href="{{ route('admin.projects.show', $project->slug) }}">
             <i class="fa-regular fa-eye fa-fw"></i>

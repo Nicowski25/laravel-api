@@ -10,12 +10,18 @@
                 <span class="badge bg-primary">{{ $project->type?->name }}</span>
             </div>
         </div>
-        <div class="card-body">
-            <p>Description: {{$project->description }}</p>
-            <p>Duration: {{$project->duration }}</p>
-            <p>Status: {{$project->status }}</p>
-            <p>Start Date: {{$project->start_date }}</p>
-            <p>End Date: {{$project->end_date }}</p>
+        <div class="d-flex">
+            <div>
+                <img class="" height="400px" src="{{ $project->image }}" alt="">
+            </div>
+            <div class="card-body">
+                <p><strong>Description:</strong> {{$project->description }}</p>
+                <p><strong>Duration:</strong>{{$project->duration }}</p>
+                <p><strong>Status:</strong> {{$project->status }}</p>
+                <p><strong>Start Date:</strong> {{$project->start_date }}</p>
+                <p><strong>End Date:</strong> {{$project->end_date }}</p>
+                <p><strong>Repository Url:</strong> {{$project->repositoryUrl }}</p>
+            </div>
         </div>
     </div>
 

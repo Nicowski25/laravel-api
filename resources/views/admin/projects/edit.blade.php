@@ -26,6 +26,12 @@
     </div>
 
     <div class="mb-3">
+        <label for="image" class="form-label">Image Url</label>
+        <input type="text" class="form-control" name="image" id="image" value="{{ old('image', $project->image) }}" aria-describedby="imageHelper" placeholder="Learn php">
+        <small id="imageHelper" class="form-text text-muted">Type the project image max 150 characters - must be unique</small>
+    </div>
+
+    <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <input type="text" class="form-control" name="description" id="description" value="{{ old('description', $project->description) }}" aria-describedby="descriptionHelper" placeholder="Learn php">
         <small id="descriptionHelper" class="form-text text-muted">Type the project description max 150 characters - must be unique</small>
@@ -57,6 +63,12 @@
         <label for="duration" class="form-label">End Date</label>
         <input type="date" name="end_date" class="form-control" name="end_date" id="end_date" aria-describedby="durationHelper" placeholder="Learn php">
         <small id="durationHelper" class="form-text text-muted">Select the project end</small>
+    </div>
+
+    <div class="mb-3">
+        <label for="repositoryUrl" class="form-label">Url of the Repository</label>
+        <input type="text" class="form-control" name="repositoryUrl" id="repositoryUrl" value="{{ old('repositoryUrl', $project->repositoryUrl) }}" aria-describedby="repositoryUrlHelper" placeholder="Learn php">
+        <small id="repositoryUrlHelper" class="form-text text-muted">Type the project repository Url max 150 characters - must be unique</small>
     </div>
 
     <button type="submit" class="btn btn-dark mb-4">Edit Project</button>

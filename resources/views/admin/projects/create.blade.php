@@ -33,6 +33,12 @@
     </div>
 
     <div class="mb-3">
+        <label for="image" class="form-label">Image Url</label>
+        <input type="text" class="form-control @error('image') is-invalid @enderror" name="image" id="image" aria-describedby="imageHelper" placeholder="Learn php">
+        <small id="imageHelper" class="form-text text-muted">Type the project image Url, max 150 characters - must be unique</small>
+    </div>
+
+    <div class="mb-3">
         <label for="duration" class="form-label">Duration</label>
         <input type="text" class="form-control @error('duration') is-invalid @enderror" name="duration" id="duration" aria-describedby="durationHelper" placeholder="3 months">
         <small id="durationHelper" class="form-text text-muted">Type the project duration</small>
@@ -59,6 +65,11 @@
         <small id="durationHelper" class="form-text text-muted">Select the project end</small>
     </div>
 
+    <div class="mb-3">
+        <label for="repositoryUrl" class="form-label">Repository Url</label>
+        <input type="text" class="form-control @error('repositoryUrl') is-invalid @enderror" name="repositoryUrl" id="repositoryUrl" aria-describedby="repositoryUrlHelper" placeholder="Learn php">
+        <small id="repositoryUrlHelper" class="form-text text-muted">Type the project repository Url, max 150 characters - must be unique</small>
+    </div>
 
 
     <div class="mb-3">
