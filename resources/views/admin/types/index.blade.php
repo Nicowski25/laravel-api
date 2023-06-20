@@ -4,12 +4,14 @@
 
 
 @if(session("message"))
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success my-3" role="alert">
   <strong>{{ session("message") }}</strong>
 </div>
 @endif
 
-<div class="table-responsive rounded overflow-hidden my-3">
+<a class="btn btn-primary my-3" href="{{ route('admin.types.create') }}" role="button">New Type</a>
+
+<div class="table-responsive rounded overflow-hidden">
   <table class="table table-primary table-striped align-middle text-center mb-0">
     <thead>
       <tr class="align-middle">
