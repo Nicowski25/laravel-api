@@ -17,13 +17,30 @@
     </div>
 
     <div class="mb-3">
-        <label for="type_id " class="form-label">Types </label>
+        <label for="type_id " class="form-label">Type</label>
         <select class="form-select @error('type_id') is-invalid @enderror" name="type_id " id="type_id ">
             <option value="">Select one</option>
             @foreach ($types as $type)
                 <option value="{{$type->id}}" {{ $type->id == old('type_id', '') ? 'selected' : '' }}> {{ $type->name }} </option>
             @endforeach
         </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <p>Select the technologies used</p>
+        @foreach ($technologies as $technology)
+        <div class="form-check @error('technologies') is-invalid @enderror">
+
+            <label class="form-check-label">
+                <input name="technologies[]" type="checkbox" value="{{ $technology->id }}" class="form-check-input" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                {{ $technology->name }}
+            </label>
+        </div>
+        @endforeach
+
+        @error('technologies')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="mb-3">
@@ -39,12 +56,12 @@
     </div>
 
     <div class="mb-3">
-        <label for="duration" class="form-label">Duration</label>
-        <input type="text" class="form-control @error('duration') is-invalid @enderror" name="duration" id="duration" aria-describedby="durationHelper" placeholder="3 months">
+        <label for="duration" class="form-label">Expected weeks duration</label>
+        <input type="text" class="form-control @error('duration') is-invalid @enderror" name="duration" id="duration" aria-describedby="durationHelper" placeholder="5 weeks">
         <small id="durationHelper" class="form-text text-muted">Type the project duration</small>
     </div>
 
-    <div>
+    <div class="mb-3">
         <select class="form-select" name="status" aria-label="Default select example">
             <option selected>Project Status</option>
             <option value="1">Done</option>
@@ -71,14 +88,7 @@
         <small id="repositoryUrlHelper" class="form-text text-muted">Type the project repository Url, max 150 characters - must be unique</small>
     </div>
 
-
-    <div class="mb-3">
-        <label for="content" class="form-label">Content</label>
-        <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="content" rows="3"></textarea>
-    </div>
-
-
-    <button type="submit" class="btn btn-dark">Insert New Project</button>
+    <button type="submit" class="btn btn-dark my-3">Insert New Project</button>
 
 </form>
 
