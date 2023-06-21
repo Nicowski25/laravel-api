@@ -21,6 +21,15 @@
                 <p><strong>Start Date:</strong> {{$project->start_date }}</p>
                 <p><strong>End Date:</strong> {{$project->end_date }}</p>
                 <p><strong>Repository Url:</strong> {{$project->repositoryUrl }}</p>
+                @if(count($project->technologies) > 0)
+                <p><strong>Technologies used:</strong>
+                <ul>
+                    @foreach($project->technologies as $technology)
+                    <li>{{$technology->name}}</li>
+                    @endforeach
+                </ul>
+                </p>
+                @endif
             </div>
         </div>
     </div>
