@@ -42,7 +42,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  Remove {{ $type->title }}?
+                  Remove {{ $type->name }}?
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
