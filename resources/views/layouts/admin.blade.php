@@ -57,6 +57,11 @@
                                     {{__('Types')}}
                                 </a>
                             </li>
+                            <a class="nav-link {{Route::currentRouteName() == 'admin.technologies.index' ? 'bg-dark' : ''}}" href="{{route('admin.technologies.index')}}">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                    {{__('Technologies')}}
+                                </a>
+                            </li>
 
                         </ul>
                     </div>
