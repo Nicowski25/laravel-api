@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('status')->default('inprogress');
             $table->date('start_date');
             $table->date('end_date')->nullable();
-            $table->string('repositoryUrl', 200);
+            $table->string('repositoryUrl', 200)->nullable();
             $table->timestamps();
         });
     }
