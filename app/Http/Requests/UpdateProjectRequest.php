@@ -34,7 +34,8 @@ class UpdateProjectRequest extends FormRequest
             'start_date' => ['nullable'],
             'end_date' => ['nullable'],
             'repositoryURL' => ['nullable'],
-            'type_id' => ['exists:types,id', 'nullable']
+            'type_id' => ['exists:types,id', 'nullable'],
+            'technologies' => ['exists:technologies,id', 'nullable']
         ];
     }
 }
