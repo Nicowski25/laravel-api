@@ -7,7 +7,7 @@
 
 @include('partials.validation_errors')
 
-<form action="{{route('admin.projects.store')}}" method="post">
+<form action="{{route('admin.projects.store')}}" method="post" enctype="multipart/form-data">
     @csrf
 
     <div class="mb-3">
@@ -31,7 +31,7 @@
         @foreach ($technologies as $technology)
         <div class="form-check @error('technologies') is-invalid @enderror">
 
-            <label class="form-check-label">
+            <label class="form-check-label mb-3">
                 <input name="technologies[]" type="checkbox" value="{{ $technology->id }}" class="form-check-input" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
                 {{ $technology->name }}
             </label>
@@ -50,9 +50,9 @@
     </div>
 
     <div class="mb-3">
-        <label for="image" class="form-label">Image Url</label>
-        <input type="text" class="form-control @error('image') is-invalid @enderror" name="image" id="image" aria-describedby="imageHelper" placeholder="Learn php">
-        <small id="imageHelper" class="form-text text-muted">Type the project image Url, max 150 characters - must be unique</small>
+        <label for="image" class="form-label">Image</label>
+        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" aria-describedby="imageHelper" placeholder="Learn php">
+        <small id="imageHelper" class="form-text text-muted">Insert the image file, max 150 characters - must be unique</small>
     </div>
 
     <div class="mb-3">

@@ -12,7 +12,7 @@
         </div>
         <div class="d-flex">
             <div>
-                <img class="" height="400px" src="{{ $project->image }}" alt="">
+                <img class="" height="400px" src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}">
             </div>
             <div class="card-body">
                 <p><strong>Description:</strong> {{$project->description }}</p>

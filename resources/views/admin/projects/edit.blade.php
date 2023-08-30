@@ -6,7 +6,7 @@
 
 @include('partials.validation_errors')
 
-<form action="{{route('admin.projects.update', $project)}}" method="post">
+<form action="{{route('admin.projects.update', $project)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -60,9 +60,9 @@
 
 
     <div class="mb-3">
-        <label for="image" class="form-label">Image Url</label>
-        <input type="text" class="form-control" name="image" id="image" value="{{ old('image', $project->image) }}" aria-describedby="imageHelper" placeholder="Learn php">
-        <small id="imageHelper" class="form-text text-muted">Type the project image max 150 characters - must be unique</small>
+        <label for="image" class="form-label">Image</label>
+        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" aria-describedby="imageHelper" placeholder="Learn php">
+        <small id="imageHelper" class="form-text text-muted">Insert the image file, max 150 characters - must be unique</small>
     </div>
 
     <div class="mb-3">
