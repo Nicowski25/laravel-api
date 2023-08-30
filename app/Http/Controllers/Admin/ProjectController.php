@@ -8,7 +8,9 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project as XmlProject;
 
 class ProjectController extends Controller
@@ -35,6 +37,8 @@ class ProjectController extends Controller
         $types = Type::orderByDesc('id')->get();
         $technologies = Technology::orderByDesc('id')->get();
 
+
+
         return view('admin.projects.create', compact('types', 'technologies'));
     }
 
@@ -53,6 +57,15 @@ class ProjectController extends Controller
 
             $val_data['slug'] = $slug;
 
+            //$val_data['user_id'] = Auth::id();
+
+            if ($request->hasFile('image')) {
+                //$image_path = Storage::disk('public')->put('uploads', $request->image);
+                $image_path = $request->file('image')->store('public/uploads');
+                //dd($image_path)
+                $val_data['image'] = $image_path;
+            }
+
             //create new proj
             $new_project = Project::create($val_data);
 
@@ -60,6 +73,10 @@ class ProjectController extends Controller
             if ($request->has('technologies')) {
                 $new_project->technologies()->attach($request->technologies);
             }
+
+            //attaching image in storage/app/public
+            //to fix
+            //$img_path = Storage::put('uploads', $val_data['image']);
 
             //redirect back to route
             return to_route('admin.projects.index')->with("message", "Project created successfully");
@@ -88,8 +105,15 @@ class ProjectController extends Controller
         $types = Type::orderBy('name')->get();
         $technologies = Technology::orderBy('name')->get();
 
-        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
-    }
+        /* TO IMPLEMENT
+            //edit only if user checked
+            if (Auth::id() === $project->user_id) {
+            } 
+            abort(403);
+            */
+            
+            return view('admin.projects.edit', compact('project', 'types', 'technologies'));
+        }
 
     /**
      * Update the specified resource in storage.
@@ -103,17 +127,38 @@ class ProjectController extends Controller
             //dd($request->all());
             $val_data = $request->validated();
             //dd($val_data);
-            $slug = Project::generateSlug($val_data['title']);
 
+
+            //generate slug
+            $slug = Project::generateSlug($val_data['title']);
+            //attach slug
             $val_data['slug'] = $slug;
 
-            $project->update($val_data);
-
+            
             //attach requested technologies  
             if ($request->has('technologies')) {
                 $project->technologies()->sync($request->technologies);
             };
+            
+            //delete image before collecting new one
+            if ($request->hasFile('image')) {
+                
+                if($project->image) {
+                    Storage::delete($project->image);
+                }
 
+                //save file in storage and copy his path
+                $image_path = $request->file('image')->store('public/uploads');
+                //$image_path = Storage::disk('public')->put('uploads', $request->image);
+                //$image_path = Storage::put('uploads', $request->image);
+                //print path in 'image'
+                $val_data['image'] = $image_path;
+
+            };
+            
+            //update project
+            $project->update($val_data);
+            
             return to_route('admin.projects.index')->with("message", "Project updated successfully");
         }
     }
@@ -126,6 +171,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        //delete image from the storage
+        if($project->image) {
+            Storage::delete($project->image);
+        }
+
         $project->delete();
         return to_route('admin.projects.index')->with('message', 'Project deleted succesfully');
     }

@@ -29,7 +29,7 @@ class ProjectSeeder extends Seeder
             $new_project->title = $project;
             $new_project->description = $faker->sentence(10);
             $new_project->duration =  $faker->randomDigit();
-            $new_project->image = $faker->word();
+            $new_project->image = 'placeholders/'. $faker->word();
             $new_project->status = 'In progress';
             $new_project->start_date = $faker->date();
             $new_project->end_date = $faker->date();
