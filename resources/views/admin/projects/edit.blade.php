@@ -25,7 +25,7 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         <p>Select the technologies used:</p>
         @foreach ($technologies as $technology)
         <div class="form-check @error('technologies') is-invalid @enderror">
@@ -58,11 +58,18 @@
         @enderror
     </div>
 
-
     <div class="mb-3">
         <label for="image" class="form-label">Image</label>
-        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" aria-describedby="imageHelper" placeholder="Learn php">
-        <small id="imageHelper" class="form-text text-muted">Insert the image file, max 150 characters - must be unique</small>
+        <div class="d-flex align-items-center">
+            @if ($project->image)
+            <img src="{{ asset('storage/' . $project->image) }}" width="200px" alt="Current Image">
+            <div class="ms-2">
+                <p class="text-muted m-0">Current Image</p>
+                @endif
+                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" aria-describedby="imageHelper">
+                <small i id="imageHelper" class="form-text text-muted">Insert the image file, max 150 characters - must be unique</small>
+            </div>
+        </div>
     </div>
 
     <div class="mb-3">
@@ -78,14 +85,15 @@
     </div>
 
     <div class="mb-3">
-        <label for="duration" class="form-label">Project Status</label>
-        <select class="form-select" name="status" value="{{ old('status', $project->status) }}" aria-label="Default select example">
-            <option>Open this select menu</option>
-            <option value="Done">Done</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Abandoned">Abandoned</option>
+        <label for="status" class="form-label">Project Status</label>
+        <select class="form-select" name="status" aria-label="Project Status">
+            <option value="Open this select menu" disabled>Select a Status</option>
+            <option value="Done" {{ old('status', $project->status) === 'Done' ? 'selected' : '' }}>Done</option>
+            <option value="In Progress" {{ old('status', $project->status) === 'In Progress' ? 'selected' : '' }}>In Progress</option>
+            <option value="Abandoned" {{ old('status', $project->status) === 'Abandoned' ? 'selected' : '' }}>Abandoned</option>
         </select>
     </div>
+
 
     <div class="mb-3">
         <label for="duration" class="form-label">Start Date</label>
@@ -95,13 +103,13 @@
 
     <div class="mb-3">
         <label for="duration" class="form-label">End Date</label>
-        <input type="date" name="end_date" class="form-control" name="end_date" id="end_date" aria-describedby="durationHelper" placeholder="Learn php">
+        <input type="date" name="end_date" class="form-control" name="end_date" id="end_date" value="{{ old('end_date', $project->end_date) }}" aria-describedby="durationHelper" placeholder="Learn php">
         <small id="durationHelper" class="form-text text-muted">Select the project end</small>
     </div>
 
     <div class="mb-3">
         <label for="repositoryUrl" class="form-label">Url of the Repository</label>
-        <input type="text" class="form-control" name="repositoryUrl" id="repositoryUrl" value="{{ old('repositoryUrl', $project->repositoryUrl) }}" aria-describedby="repositoryUrlHelper" placeholder="Learn php">
+        <input type="text" class="form-control" name="repositoryUrl" id="repositoryUrl" value="{{ old('repositoryUrl', $project->repositoryUrl ? $project->repositoryUrl : '') }}" aria-describedby="repositoryUrlHelper" placeholder="Learn php">
         <small id="repositoryUrlHelper" class="form-text text-muted">Type the project repository Url max 150 characters - must be unique</small>
     </div>
 
