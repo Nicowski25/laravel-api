@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\ProjectController;
 
 /*
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/projects', [ProjectController::class, 'index']);
+//invio email
+Route::post('/contacts', [ContactController::class, 'store']);

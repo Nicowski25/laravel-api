@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\TechnologyController;
+use App\Mail\NewContact;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Show the mailable template
+Route::get('/mailable', function() {
+    $contact = Contact::find(1);
+    return new NewContact($contact);
+});
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name(('dashboard'));
