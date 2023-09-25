@@ -52,7 +52,7 @@
         <!-- card main -->
         <div class="d-flex">
             <div>
-                <img class="" height="200px" src="{{ asset('storage/' . $project->image) }}">
+                <img class="" height="200px" src="{{ asset($project->image) }}">
             </div>
             <div class="card-body">
                 <div class="d-flex my-2">
