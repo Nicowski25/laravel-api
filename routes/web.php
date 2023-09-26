@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 //Show the mailable template
 Route::get('/mailable', function() {
-    $contact = Contact::find(1);
+    $contact = Contact::latest()->first(); //recupera l'ultima mail ricevuta
     return new NewContact($contact);
 });
 
