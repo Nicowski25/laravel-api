@@ -20,10 +20,10 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="vh-100">
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -82,3 +82,9 @@
 </body>
 
 </html>
+
+<style>
+    #app {
+        background: linear-gradient(145deg, rgba(36,36,36,1) 79%, rgba(37,48,42,1) 85%, rgba(38,70,52,1) 90%, rgba(40,111,71,1) 95%, rgba(46,204,113,1) 100%);
+    }
+</style>
